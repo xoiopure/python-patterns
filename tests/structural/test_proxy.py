@@ -11,16 +11,16 @@ class ProxyTest(unittest.TestCase):
         """Class scope setup."""
         cls.proxy = Proxy()
 
-    def setUp(cls):
+    def setUp(self):
         """Function/test case scope setup."""
-        cls.output = StringIO()
-        cls.saved_stdout = sys.stdout
-        sys.stdout = cls.output
+        self.output = StringIO()
+        self.saved_stdout = sys.stdout
+        sys.stdout = self.output
 
-    def tearDown(cls):
+    def tearDown(self):
         """Function/test case scope teardown."""
-        cls.output.close()
-        sys.stdout = cls.saved_stdout
+        self.output.close()
+        sys.stdout = self.saved_stdout
 
     def test_do_the_job_for_admin_shall_pass(self):
         client(self.proxy, "admin")

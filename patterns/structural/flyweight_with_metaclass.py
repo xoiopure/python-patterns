@@ -2,7 +2,7 @@ import weakref
 
 
 class FlyweightMeta(type):
-    def __new__(mcs, name, parents, dct):
+    def __new__(cls, name, parents, dct):
         """
         Set up object pool
 
@@ -13,7 +13,7 @@ class FlyweightMeta(type):
         :return: new class
         """
         dct["pool"] = weakref.WeakValueDictionary()
-        return super().__new__(mcs, name, parents, dct)
+        return super().__new__(cls, name, parents, dct)
 
     @staticmethod
     def _serialize_params(cls, *args, **kwargs):
@@ -23,8 +23,7 @@ class FlyweightMeta(type):
         """
         args_list = list(map(str, args))
         args_list.extend([str(kwargs), cls.__name__])
-        key = "".join(args_list)
-        return key
+        return "".join(args_list)
 
     def __call__(cls, *args, **kwargs):
         key = FlyweightMeta._serialize_params(cls, *args, **kwargs)

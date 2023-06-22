@@ -46,7 +46,7 @@ class ProductModel(Model):
         try:
             return self.products[product]
         except KeyError as e:
-            raise KeyError(str(e) + " not in the model's item list.")
+            raise KeyError(f"{str(e)} not in the model's item list.")
 
 
 class View(ABC):
@@ -67,7 +67,7 @@ class View(ABC):
 
 class ConsoleView(View):
     def show_item_list(self, item_type, item_list):
-        print(item_type.upper() + " LIST:")
+        print(f"{item_type.upper()} LIST:")
         for item in item_list:
             print(item)
         print("")
@@ -77,10 +77,10 @@ class ConsoleView(View):
         return string[0].upper() + string[1:].lower()
 
     def show_item_information(self, item_type, item_name, item_info):
-        print(item_type.upper() + " INFORMATION:")
-        printout = "Name: %s" % item_name
+        print(f"{item_type.upper()} INFORMATION:")
+        printout = f"Name: {item_name}"
         for key, value in item_info.items():
-            printout += ", " + self.capitalizer(str(key)) + ": " + str(value)
+            printout += f", {self.capitalizer(str(key))}: {str(value)}"
         printout += "\n"
         print(printout)
 

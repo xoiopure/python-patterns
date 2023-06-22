@@ -67,7 +67,7 @@ class NotSpecification(CompositeSpecification):
         self._wrapped: Specification = wrapped
 
     def is_satisfied_by(self, candidate):
-        return bool(not self._wrapped.is_satisfied_by(candidate))
+        return not self._wrapped.is_satisfied_by(candidate)
 
 
 class User:

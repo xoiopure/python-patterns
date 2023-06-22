@@ -33,10 +33,7 @@ class ConstructorInjection:
 
     def get_current_time_as_html_fragment(self) -> str:
         current_time = self.time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
-        )
-        return current_time_as_html_fragment
+        return f'<span class="tinyBoldText">{current_time}</span>'
 
 
 class ParameterInjection:
@@ -45,10 +42,7 @@ class ParameterInjection:
 
     def get_current_time_as_html_fragment(self, time_provider: Callable) -> str:
         current_time = time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
-        )
-        return current_time_as_html_fragment
+        return f'<span class="tinyBoldText">{current_time}</span>'
 
 
 class SetterInjection:
@@ -62,10 +56,7 @@ class SetterInjection:
 
     def get_current_time_as_html_fragment(self):
         current_time = self.time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
-        )
-        return current_time_as_html_fragment
+        return f'<span class="tinyBoldText">{current_time}</span>'
 
 
 def production_code_time_provider() -> str:
@@ -74,8 +65,7 @@ def production_code_time_provider() -> str:
     datetime for this example).
     """
     current_time = datetime.datetime.now()
-    current_time_formatted = f"{current_time.hour}:{current_time.minute}"
-    return current_time_formatted
+    return f"{current_time.hour}:{current_time.minute}"
 
 
 def midnight_time_provider() -> str:

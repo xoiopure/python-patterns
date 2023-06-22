@@ -22,7 +22,7 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
                     f"Discount cannot be applied due to negative price resulting. {value.__name__}"
                 )
         except ValueError as ex:
-            print(str(ex))
+            print(ex)
             return False
         else:
             return True
@@ -48,11 +48,7 @@ class Order:
         self.discount_strategy = discount_strategy
 
     def apply_discount(self) -> float:
-        if self.discount_strategy:
-            discount = self.discount_strategy(self)
-        else:
-            discount = 0
-
+        discount = self.discount_strategy(self) if self.discount_strategy else 0
         return self.price - discount
 
     def __repr__(self) -> str:
