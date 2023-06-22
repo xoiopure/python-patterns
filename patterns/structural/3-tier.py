@@ -48,8 +48,7 @@ class Ui:
         print("")
 
     def get_product_information(self, product: str) -> None:
-        product_info = self.business_logic.product_information(product)
-        if product_info:
+        if product_info := self.business_logic.product_information(product):
             print("PRODUCT INFORMATION:")
             print(
                 f"Name: {product.title()}, "

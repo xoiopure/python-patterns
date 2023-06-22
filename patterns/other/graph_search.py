@@ -17,8 +17,7 @@ class GraphSearch:
             return path
         for node in self.graph.get(start, []):
             if node not in path:
-                newpath = self.find_path_dfs(node, end, path[:])
-                if newpath:
+                if newpath := self.find_path_dfs(node, end, path[:]):
                     return newpath
 
     def find_all_paths_dfs(self, start, end, path=None):
@@ -42,8 +41,7 @@ class GraphSearch:
         shortest = None
         for node in self.graph.get(start, []):
             if node not in path:
-                newpath = self.find_shortest_path_dfs(node, end, path[:])
-                if newpath:
+                if newpath := self.find_shortest_path_dfs(node, end, path[:]):
                     if not shortest or len(newpath) < len(shortest):
                         shortest = newpath
         return shortest
@@ -77,7 +75,7 @@ class GraphSearch:
                     edge_to[node] = value
                     dist_to[node] = dist_to[value] + 1
                     queue.append(node)
-                    if end in edge_to.keys():
+                    if end in edge_to:
                         path = []
                         node = end
                         while dist_to[node] != 0:

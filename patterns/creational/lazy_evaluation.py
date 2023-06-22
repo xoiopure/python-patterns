@@ -42,7 +42,7 @@ def lazy_property2(fn):
     The function decorated is called the first time to retrieve the result and
     then that calculated result is used the next time you access the value.
     """
-    attr = "_lazy__" + fn.__name__
+    attr = f"_lazy__{fn.__name__}"
 
     @property
     def _lazy_property(self):
@@ -61,9 +61,7 @@ class Person:
 
     @lazy_property
     def relatives(self):
-        # Get all relatives, let's assume that it costs much time.
-        relatives = "Many relatives."
-        return relatives
+        return "Many relatives."
 
     @lazy_property2
     def parents(self):

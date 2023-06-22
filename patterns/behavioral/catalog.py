@@ -23,7 +23,7 @@ class Catalog:
         }
 
         # simple test to validate param value
-        if param in self._static_method_choices.keys():
+        if param in self._static_method_choices:
             self.param = param
         else:
             raise ValueError(f"Invalid Value for Param: {param}")
